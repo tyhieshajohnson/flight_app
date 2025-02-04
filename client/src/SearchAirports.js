@@ -51,19 +51,26 @@ const SearchAirports = () => {
 
   return (
     <div className="container mt-4">
-      <h1>Search Airports</h1>
+      {/* Banner Image */}
+      <div className="banner">
+        <img src="/flights_nc_4.svg" alt="Banner" className="banner-image" />
+      </div>
 
-      <div className="mb-3">
+      {/* Heading */}
+      <h1 className="search-heading">Find Airports Near You</h1>
+
+      <div className="search-box form-container">
         <Form.Control
           type="text"
           placeholder="Enter airport name..."
           value={query}
           onChange={handleSearchChange} // Update query on change
+          className="search-input"
         />
         <Button
-          className="mt-2"
-          onClick={handleSearchClick} // Trigger search on click
+          type="button"
           variant="primary"
+          onClick={handleSearchClick} // Trigger search on click
           disabled={loading || !query}
         >
           {loading ? <Spinner animation="border" size="sm" /> : 'Search'}
@@ -74,7 +81,7 @@ const SearchAirports = () => {
       {error && <Alert variant="danger">{error}</Alert>}
 
       {/* Display airports data in a table */}
-      <Table striped bordered hover>
+      <Table striped bordered hover className="airports-table form-container">
         <thead>
           <tr>
             <th>Name</th>
@@ -96,7 +103,7 @@ const SearchAirports = () => {
                     <img
                       src={airport.media[0].url}
                       alt={airport.presentation.title}
-                      style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                      className="airport-image"
                     />
                   ) : (
                     'No image available'

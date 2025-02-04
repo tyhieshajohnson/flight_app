@@ -128,9 +128,14 @@ const BookFlight = () => {
 
   return (
     <div className="container mt-4">
-      <h1>Book a Flight</h1>
+      {/* Banner Image */}
+      <div className="banner">
+        <img src="/flights_nc_4.svg" alt="Flight Banner" style={{ width: '100%', height: 'auto' }} />
+      </div>
 
-      <Form onSubmit={handleSubmit}>
+      <h1>Search Available Flights</h1>
+
+      <Form onSubmit={handleSubmit} style={{ borderRadius: '15px', border: '1px solid #ddd', padding: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
         {/* Origin Airport */}
         <Row>
           <Col sm={12} md={6}>
@@ -285,7 +290,7 @@ const BookFlight = () => {
 
       {/* Display flight results */}
       {flights.length > 0 && (
-        <div className="mt-4">
+        <div className="mt-4 form-container">
           <h2>Flight Results</h2>
           <Table striped bordered hover>
             <thead>
