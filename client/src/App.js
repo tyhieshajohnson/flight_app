@@ -1,24 +1,48 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
+import axios from 'axios';
+import SearchAirports from './SearchAirports';
+import SearchFlights from './SearchFlights';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+          <div className="container-fluid">
+            <a className="navbar-brand" href="#">Navbar</a>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div className="navbar-nav">
+                <Link className="nav-link" to="/airports">
+                  <button type="button" className="btn btn-outline-secondary">Airports</button>
+                </Link>
+                <Link className="nav-link" to="/flights">
+                  <button type="button" className="btn btn-outline-secondary">Flights</button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <Routes>
+          <Route path="/airports" element={<SearchAirports />} />
+          <Route path="/flights" element={<SearchFlights />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
