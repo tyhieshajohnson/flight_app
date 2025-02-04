@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import SearchAirports from './SearchAirports';
 import SearchFlights from './SearchFlights';
+import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-
   return (
     <Router>
       <div className="App">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">Navbar</a>
+            <a className="navbar-brand">AirScraper.api</a>
             <button
               className="navbar-toggler"
               type="button"
@@ -42,6 +42,8 @@ function App() {
           <Route path="/airports" element={<SearchAirports />} />
           <Route path="/flights" element={<SearchFlights />} />
         </Routes>
+
+        <Footer />
       </div>
     </Router>
   );
