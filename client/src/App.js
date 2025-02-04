@@ -4,6 +4,7 @@ import './App.css';
 import axios from 'axios';
 import SearchAirports from './SearchAirports';
 import SearchFlights from './SearchFlights';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
