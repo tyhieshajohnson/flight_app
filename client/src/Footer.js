@@ -8,13 +8,13 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className="col-12 text-center">
-            <p>&copy; {new Date().getFullYear()} AirScraper API. All Rights Reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Tyhiesha Johnson</p>
             <p>
-              <Link to="/terms" className="text-light mx-2">
+              <Link to="/" className="text-light mx-2">
                 Terms of Service
               </Link>
               |
-              <Link to="/privacy" className="text-light mx-2">
+              <Link to="/" className="text-light mx-2">
                 Privacy Policy
               </Link>
             </p>

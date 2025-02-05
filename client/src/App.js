@@ -13,7 +13,7 @@ function App() {
       <div className="App">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <a className="navbar-brand">AirScraper.api</a>
+            <Link className="navbar-brand" to="/">AirScraper.api</Link>
             <button
               className="navbar-toggler"
               type="button"
@@ -39,6 +39,17 @@ function App() {
         </nav>
 
         <Routes>
+        <Route
+            path="/"
+            element={<div style={{ color: 'black', padding: '20px' }}>
+            <div className="banner">
+                <img src="/flights_nc_4.svg" alt="Banner" className="banner-image" />
+            </div>
+            <h1 className="search-heading">Welcome to AirScraper API</h1>
+            <p className="home-description">A responsive Google Flights replica built with React, Node.js and the
+            Sky Scrapper API from RapidAPI.</p>
+            </div>}
+          />
           <Route path="/airports" element={<SearchAirports />} />
           <Route path="/flights" element={<SearchFlights />} />
         </Routes>
