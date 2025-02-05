@@ -14,7 +14,7 @@ const BookFlight = () => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
-  const [limit, setLimit] = useState(10); // Set a default limit for the search results
+  const [limit, setLimit] = useState(10);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -25,7 +25,6 @@ const BookFlight = () => {
   const [originSearchQuery, setOriginSearchQuery] = useState('');
   const [destinationSearchQuery, setDestinationSearchQuery] = useState('');
 
-  // Fetch airports for origin or destination based on search query
   useEffect(() => {
     const fetchAirports = async (query, type) => {
       if (!query) {
@@ -68,7 +67,7 @@ const BookFlight = () => {
   }, [originSearchQuery, destinationSearchQuery]);
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent page reload
+    event.preventDefault();
 
     setLoading(true);
     setError(null);
@@ -103,10 +102,8 @@ const BookFlight = () => {
     try {
       const response = await axios.request(options);
 
-      // Log API Response to Console
       console.log('API Response:', response.data);
 
-      // Extract itineraries from the API response and set them into the flights state
       setFlights(response.data.data.itineraries);
     } catch (err) {
       setError('Failed to fetch flights. Please try again.');
@@ -115,7 +112,6 @@ const BookFlight = () => {
     }
   };
 
-  // Handle airport selection (Origin and Destination)
   const handleAirportSelect = (airport, type) => {
     if (type === 'origin') {
       setOriginSkyId(airport.skyId);
@@ -128,15 +124,14 @@ const BookFlight = () => {
 
   return (
     <div className="container mt-4">
-      {/* Banner Image */}
       <div className="banner">
         <img src="/flights_nc_4.svg" alt="Flight Banner" style={{ width: '100%', height: 'auto' }} />
       </div>
 
       <h1>Search Available Flights</h1>
 
-      <Form onSubmit={handleSubmit} style={{ borderRadius: '15px', border: '1px solid #ddd', padding: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-        {/* Origin Airport */}
+      <Form onSubmit={handleSubmit} style={{ borderRadius: '15px', border: '1px solid #ddd', padding: '20px',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
         <Row>
           <Col sm={12} md={6}>
             <Form.Group controlId="originAirport">
@@ -167,7 +162,6 @@ const BookFlight = () => {
             </Form.Group>
           </Col>
 
-          {/* Destination Airport */}
           <Col sm={12} md={6}>
             <Form.Group controlId="destinationAirport">
               <Form.Label>Destination Airport</Form.Label>
@@ -198,7 +192,6 @@ const BookFlight = () => {
           </Col>
         </Row>
 
-        {/* Date and Passenger Info */}
         <Row>
           <Col sm={12} md={6}>
             <Form.Group controlId="departureDate">
@@ -285,10 +278,8 @@ const BookFlight = () => {
         </Button>
       </Form>
 
-      {/* Error message */}
       {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
 
-      {/* Display flight results */}
       {flights.length > 0 && (
         <div className="mt-4 form-container">
           <h2>Flight Results</h2>
