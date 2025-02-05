@@ -101,9 +101,6 @@ const BookFlight = () => {
 
     try {
       const response = await axios.request(options);
-
-      console.log('API Response:', response.data);
-
       setFlights(response.data.data.itineraries);
     } catch (err) {
       setError('Failed to fetch flights. Please try again.');
@@ -116,9 +113,11 @@ const BookFlight = () => {
     if (type === 'origin') {
       setOriginSkyId(airport.skyId);
       setOriginEntityId(airport.entityId);
+      setOriginSearchQuery('');
     } else {
       setDestinationSkyId(airport.skyId);
       setDestinationEntityId(airport.entityId);
+      setDestinationSearchQuery('');
     }
   };
 
@@ -130,9 +129,16 @@ const BookFlight = () => {
 
       <h1>Search Available Flights</h1>
 
-      <Form onSubmit={handleSubmit} style={{ borderRadius: '15px', border: '1px solid #ddd', padding: '20px',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
-        <Row>
+      <Form
+        onSubmit={handleSubmit}
+        style={{
+          borderRadius: '15px',
+          border: '1px solid #ddd',
+          padding: '30px',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <Row className="mb-4">
           <Col sm={12} md={6}>
             <Form.Group controlId="originAirport">
               <Form.Label>Origin Airport</Form.Label>
@@ -192,7 +198,7 @@ const BookFlight = () => {
           </Col>
         </Row>
 
-        <Row>
+        <Row className="mb-4">
           <Col sm={12} md={6}>
             <Form.Group controlId="departureDate">
               <Form.Label>Departure Date</Form.Label>
@@ -217,7 +223,7 @@ const BookFlight = () => {
           </Col>
         </Row>
 
-        <Row>
+        <Row className="mb-4">
           <Col sm={12} md={6}>
             <Form.Group controlId="adults">
               <Form.Label>Adults</Form.Label>
@@ -243,7 +249,7 @@ const BookFlight = () => {
           </Col>
         </Row>
 
-        <Row>
+        <Row className="mb-4">
           <Col sm={12} md={6}>
             <Form.Group controlId="infants">
               <Form.Label>Infants</Form.Label>
@@ -273,7 +279,7 @@ const BookFlight = () => {
           </Col>
         </Row>
 
-        <Button type="submit" variant="primary" disabled={loading}>
+        <Button type="submit" variant="primary" disabled={loading} className="mt-4">
           {loading ? <Spinner animation="border" size="sm" /> : 'Search Flights'}
         </Button>
       </Form>
