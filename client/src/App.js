@@ -47,7 +47,7 @@ function App() {
             </div>
             <h1 className="search-heading">Welcome to AirScraper API</h1>
             <p className="home-description">A responsive Google Flights replica built with React, Node.js and the
-            Sky Scrapper API from RapidAPI. </p>
+            Sky Scrapper API from RapidAPI.</p>
             </div>}
           />
           <Route path="/airports" element={<SearchAirports />} />
