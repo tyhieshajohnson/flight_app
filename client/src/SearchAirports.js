@@ -3,16 +3,15 @@ import axios from 'axios';
 import { Table, Form, Button, Spinner, Alert } from 'react-bootstrap';
 
 const SearchAirports = () => {
-  const [query, setQuery] = useState(''); // Search query
-  const [airports, setAirports] = useState([]); // List of fetched airports
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [query, setQuery] = useState('');
+  const [airports, setAirports] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Function to fetch airports based on the query
   const fetchAirports = async () => {
-    if (!query) return; // Don't fetch if the query is empty
+    if (!query) return;
     setLoading(true);
-    setError(null); // Reset error before new search
+    setError(null);
 
     const options = {
       method: 'GET',
@@ -30,33 +29,30 @@ const SearchAirports = () => {
     try {
       const response = await axios.request(options);
 
-      // Filter only airports (not cities or countries)
       const airportsData = response.data.data.filter(item => item.navigation.entityType === 'AIRPORT');
 
-      setAirports(airportsData); // Set the airports in state
+      setAirports(airportsData);
     } catch (error) {
       setError('Failed to fetch airports. Please try again.');
     } finally {
-      setLoading(false); // Set loading to false after fetching
+      setLoading(false);
     }
   };
 
   const handleSearchChange = (event) => {
-    setQuery(event.target.value); // Update query when user types
+    setQuery(event.target.value);
   };
 
   const handleSearchClick = () => {
-    fetchAirports(); // Trigger the API request when user clicks Search
+    fetchAirports();
   };
 
   return (
     <div className="container mt-4">
-      {/* Banner Image */}
       <div className="banner">
         <img src="/flights_nc_4.svg" alt="Banner" className="banner-image" />
       </div>
 
-      {/* Heading */}
       <h1 className="search-heading">Find Airports Near You</h1>
 
       <div className="search-box form-container">
@@ -64,23 +60,21 @@ const SearchAirports = () => {
           type="text"
           placeholder="Enter airport name..."
           value={query}
-          onChange={handleSearchChange} // Update query on change
+          onChange={handleSearchChange}
           className="search-input"
         />
         <Button
           type="button"
           variant="primary"
-          onClick={handleSearchClick} // Trigger search on click
+          onClick={handleSearchClick}
           disabled={loading || !query}
         >
           {loading ? <Spinner animation="border" size="sm" /> : 'Search'}
         </Button>
       </div>
 
-      {/* Show error message if any */}
       {error && <Alert variant="danger">{error}</Alert>}
 
-      {/* Display airports data in a table */}
       <Table striped bordered hover className="airports-table form-container">
         <thead>
           <tr>
@@ -98,7 +92,7 @@ const SearchAirports = () => {
                 <td>{airport.navigation.localizedName || 'N/A'}</td>
                 <td>{airport.presentation.subtitle || 'N/A'}</td>
                 <td>
-                  {/* Check if there's an image available */}
+
                   {airport.media && airport.media[0] ? (
                     <img
                       src={airport.media[0].url}
