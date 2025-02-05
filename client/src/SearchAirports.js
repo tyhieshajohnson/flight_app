@@ -55,7 +55,7 @@ const SearchAirports = () => {
 
       <h1 className="search-heading">Find Airports Near You</h1>
 
-      <div className="search-box form-container">
+      <div className="search-box form-container d-flex align-items-center">
         <Form.Control
           type="text"
           placeholder="Enter airport name..."
@@ -68,6 +68,7 @@ const SearchAirports = () => {
           variant="primary"
           onClick={handleSearchClick}
           disabled={loading || !query}
+          className="ms-2"
         >
           {loading ? <Spinner animation="border" size="sm" /> : 'Search'}
         </Button>
@@ -92,7 +93,6 @@ const SearchAirports = () => {
                 <td>{airport.navigation.localizedName || 'N/A'}</td>
                 <td>{airport.presentation.subtitle || 'N/A'}</td>
                 <td>
-
                   {airport.media && airport.media[0] ? (
                     <img
                       src={airport.media[0].url}
